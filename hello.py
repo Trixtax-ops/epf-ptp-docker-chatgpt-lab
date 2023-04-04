@@ -24,6 +24,13 @@ def chatgpt():
 
 @app.route('/chatgpt_ask')
 def chatgpt_ask():
-    return "<h1>Hello, Tristan!</h1>"
-
-
+    # get user input
+    language = request.args.get('language')
+    content = request.args.get('content')
+    
+    # create code using OpenAI
+    completion = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[{"role": "user", "content": f"Generate {language} code: {content}"}]
+    )
+    return completion['choices'][0]['message']['content']
