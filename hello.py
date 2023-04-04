@@ -22,4 +22,8 @@ def chatgpt():
     )
     return completion['choices'][0]['message']['content']
 
+@app.route('/chatgpt_ask')
+def chatgpt_ask():
+    return "<h1>Hello, Tristan!</h1>"
+
 
